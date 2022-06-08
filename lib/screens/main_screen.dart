@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:inpos/screens/dashboard/header/header_screen.dart';
+import 'package:inpos/screens/dashboard/statistics_overall/statistics_overall_widget.dart';
 import 'package:inpos/settings/size_config.dart';
 
 import 'navigation_bar/menu_bar_widget.dart';
@@ -16,10 +17,7 @@ class _MainScreenState extends State<MainScreen> {
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Page1: Dashboard',
-      style: optionStyle,
-    ),
+    StatsOverallWidget(),
     Text(
       'Page2: Online Order',
       style: optionStyle,
@@ -41,7 +39,10 @@ class _MainScreenState extends State<MainScreen> {
     SizeConfig().init(context);
     return Scaffold(
       appBar: const DashboardHeaderWidget(),
-      body: Center(
+      body: Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: getProportionateScreenWidth(16),
+        ),
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: MenuBarWidget(
