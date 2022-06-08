@@ -8,5 +8,6 @@ const colorNotSelected = Color(0xFFB8B8B8);
 const colorSuccess = Color(0xFF37CD1D);
 const colorNotif = Color(0xFFFE0200);
 const bgColor = Color(0xFFFDFDFD);
+const fgColor = Color(0xFFFFFFFF);
 
 const defaultPadding = 16.0;
