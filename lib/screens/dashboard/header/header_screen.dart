@@ -21,6 +21,7 @@ class DashboardHeaderWidget extends StatelessWidget with PreferredSizeWidget {
       ),
       title: const TitleWidget(),
       actions: actionList,
+      elevation: 0,
     );
   }
 }
