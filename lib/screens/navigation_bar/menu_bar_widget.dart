@@ -29,9 +29,7 @@ class MenuBarWidget extends StatelessWidget {
   BottomNavigationBarItem menuBarItem(
       {required IconData icon, required String label}) {
     return BottomNavigationBarItem(
-      icon: const Icon(
-        Icons.radar,
-      ),
+      icon: Icon(icon),
       label: label,
     );
   }
