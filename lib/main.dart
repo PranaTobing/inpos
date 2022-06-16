@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:inpos/screens/main_screen.dart';
 import 'package:inpos/settings/constants.dart';
+import 'package:inpos/settings/routes.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,10 +15,15 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Inpos Application Demo',
       theme: ThemeData(
-        primaryColor: bgColor,
+        primaryColor: primaryColor,
+        appBarTheme: const AppBarTheme(
+            color: Colors.white,
+            elevation: 0,
+            iconTheme: IconThemeData(color: primaryColor),
+            titleTextStyle: TextStyle(color: primaryColor, fontSize: 18)),
       ),
-      home: MainScreen(),
-      debugShowCheckedModeBanner: false,
+      initialRoute: MainScreen.routeName,
+      routes: routes,
     );
   }
 }
