@@ -7,7 +7,7 @@ import 'navigation_bar/menu_bar_widget.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
-
+  static String routeName = '/home';
   @override
   State<MainScreen> createState() => _MainScreenState();
 }

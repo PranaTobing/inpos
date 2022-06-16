@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:inpos/settings/constants.dart';
 import 'package:inpos/settings/size_config.dart';
 
 import 'header_constants.dart';
@@ -15,13 +14,15 @@ class DashboardHeaderWidget extends StatelessWidget with PreferredSizeWidget {
   @override
   AppBar build(BuildContext context) {
     return AppBar(
-      backgroundColor: bgColor,
-      leading: Image.asset(
-        leadingHeader,
+      leading: Transform.translate(
+        offset: const Offset(20, 0),
+        child: Image.asset(
+          leadingHeader,
+        ),
       ),
+      titleSpacing: 30,
       title: const TitleWidget(),
       actions: actionList,
-      elevation: 0,
     );
   }
 }
