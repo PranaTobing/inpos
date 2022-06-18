@@ -14,6 +14,7 @@ class StatsOverallWidget extends StatelessWidget {
           vertical: getProportionateScreenWidth(20),
         ),
         child: ListView(
+          physics: const BouncingScrollPhysics(),
           children: [
             const StatsOverallList(),
             SizedBox(

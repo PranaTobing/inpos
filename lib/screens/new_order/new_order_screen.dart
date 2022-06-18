@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:inpos/screens/checkout/checkout_screen.dart';
 import 'package:inpos/settings/constants.dart';
 
+import '../../components/bottom_widget.dart';
 import '../../settings/size_config.dart';
 import 'grid_builder_item_widget.dart';
 import 'new_order_constants.dart';
 import 'tab_item_widget.dart';
+import 'text_button_checkout.dart';
 
 class NewOrderScreen extends StatefulWidget {
   const NewOrderScreen({Key? key}) : super(key: key);
@@ -48,7 +51,7 @@ class _NewOrderScreenState extends State<NewOrderScreen>
             horizontal: getProportionateScreenWidth(16),
           ),
           child: Container(
-            height: SizeConfig.screenHeight * 0.75,
+            height: SizeConfig.screenHeight * 0.8,
             decoration: BoxDecoration(borderRadius: BorderRadius.circular(5)),
             child: Column(
               children: [
@@ -75,20 +78,12 @@ class _NewOrderScreenState extends State<NewOrderScreen>
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton.extended(
+      bottomSheet: BottomWidget(
         onPressed: () {
-          // Add your onPressed code here!
+          Navigator.pushNamed(context, CheckoutScreen.routeName);
         },
-        // extendedPadding:
-        //     EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
-        extendedIconLabelSpacing: SizeConfig.screenWidth * 0.3,
-        label: Row(
-          children: const [Text('Checkout'), Icon(Icons.arrow_forward_ios)],
-        ),
-        icon: const Text('Rp. 136.400'),
-        backgroundColor: primaryColor,
+        child: const TextCheckoutButton(total: 167000),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 
