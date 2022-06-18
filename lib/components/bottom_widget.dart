@@ -18,7 +18,7 @@ class BottomWidget extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(
           horizontal: getProportionateScreenWidth(16),
-          vertical: getProportionateScreenWidth(10)),
+          vertical: getProportionateScreenWidth(15)),
       child: SizedBox(
         width: double.infinity,
         height: getProportionateScreenWidth(48),

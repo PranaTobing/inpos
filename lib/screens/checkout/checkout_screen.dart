@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:inpos/screens/payment/payment_screen.dart';
 
 import '../../components/appbar_with_actions.dart';
 import '../../components/bottom_widget.dart';
@@ -45,7 +46,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
       ),
       bottomSheet: BottomWidget(
         onPressed: () {
-          // Navigator.pushNamed(context, CheckoutScreen.CheckoutScreen.routeName);
+          Navigator.pushNamed(context, PaymentScreen.routeName);
         },
         child: TextPaymentButton(total: totalSum.toInt()),
       ),
