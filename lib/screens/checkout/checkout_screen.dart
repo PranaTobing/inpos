@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:inpos/screens/payment/payment_arguments.dart';
 import 'package:inpos/screens/payment/payment_screen.dart';
 
 import '../../components/appbar_with_actions.dart';
@@ -6,7 +7,7 @@ import '../../components/bottom_widget.dart';
 import '../../settings/size_config.dart';
 import 'body_checkout.dart';
 import 'data_checkout.dart';
-import 'text_button_payment.dart';
+import '../../components/text_button_payment.dart';
 
 class CheckoutScreen extends StatefulWidget {
   const CheckoutScreen({Key? key}) : super(key: key);
@@ -46,9 +47,13 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
       ),
       bottomSheet: BottomWidget(
         onPressed: () {
-          Navigator.pushNamed(context, PaymentScreen.routeName);
+          Navigator.pushNamed(context, PaymentScreen.routeName,
+              arguments: PaymentArguments(totalSum.toInt(), listCheckout));
         },
-        child: TextPaymentButton(total: totalSum.toInt()),
+        child: TextPaymentButton(
+          total: totalSum.toInt(),
+          text: 'Continue to Payment',
+        ),
       ),
     );
   }
