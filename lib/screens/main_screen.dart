@@ -3,6 +3,7 @@ import 'package:inpos/screens/dashboard/header/header_screen.dart';
 import 'package:inpos/screens/dashboard/statistics_overall/statistics_overall_widget.dart';
 import 'package:inpos/settings/size_config.dart';
 
+import '../components/coming_soon_widget.dart';
 import 'navigation_bar/menu_bar_widget.dart';
 
 class MainScreen extends StatefulWidget {
@@ -18,14 +19,8 @@ class _MainScreenState extends State<MainScreen> {
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
     StatsOverallWidget(),
-    Text(
-      'Page2: Online Order',
-      style: optionStyle,
-    ),
-    Text(
-      'Page3: Settings',
-      style: optionStyle,
-    ),
+    ComingSoon(text: 'Page2: Online Order'),
+    ComingSoon(text: 'Page3: Settings'),
   ];
 
   void _onItemTapped(int index) {

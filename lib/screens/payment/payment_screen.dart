@@ -63,12 +63,12 @@ class _PaymentScreenState extends State<PaymentScreen>
                   child: TabBarView(
                     physics: const NeverScrollableScrollPhysics(),
                     controller: tabController,
-                    children: const [
-                      PaymentCashBody(),
-                      ComingSoon(
+                    children: [
+                      PaymentCashBody(subTotal: args.totalHarga),
+                      const ComingSoon(
                         text: 'e-Wallet Coming Soon',
                       ),
-                      ComingSoon(
+                      const ComingSoon(
                         text: 'debit Coming Soon',
                       ),
                     ],
