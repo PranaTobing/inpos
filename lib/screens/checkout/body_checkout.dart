@@ -10,13 +10,19 @@ class BodyCheckout extends StatelessWidget {
       required this.img,
       required this.titleItem,
       required this.totalItem,
-      required this.harga})
+      required this.harga,
+      required this.substractFunc,
+      required this.addFunc,
+      required this.deleteFunc})
       : super(key: key);
 
   final String img;
   final String titleItem;
-  final double totalItem;
-  final double harga;
+  final int totalItem;
+  final int harga;
+  final VoidCallback substractFunc;
+  final VoidCallback addFunc;
+  final VoidCallback deleteFunc;
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +57,6 @@ class BodyCheckout extends StatelessWidget {
               Expanded(
                 flex: 4,
                 child: Column(
-                  // mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(titleItem),
@@ -59,7 +64,7 @@ class BodyCheckout extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         IconButton(
-                          onPressed: () {},
+                          onPressed: substractFunc,
                           icon: const Icon(
                             Icons.remove_circle,
                             color: primaryColor,
@@ -67,7 +72,7 @@ class BodyCheckout extends StatelessWidget {
                         ),
                         Text('$totalItem'),
                         IconButton(
-                          onPressed: () {},
+                          onPressed: addFunc,
                           icon: const Icon(
                             Icons.add_circle,
                             color: primaryColor,
@@ -88,7 +93,7 @@ class BodyCheckout extends StatelessWidget {
                       style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
                     IconButton(
-                      onPressed: () {},
+                      onPressed: deleteFunc,
                       icon: const Icon(
                         Icons.cancel_rounded,
                         color: primaryColor,

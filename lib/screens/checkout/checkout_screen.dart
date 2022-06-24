@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:inpos/bloc/checkout/checkout_bloc.dart';
 import 'package:inpos/screens/payment/payment_screen.dart';
 
 import '../../components/appbar_with_actions.dart';
 import '../../components/bottom_widget.dart';
 import '../../settings/size_config.dart';
+import '../../components/text_button_payment.dart';
 import 'body_checkout.dart';
-import 'data_checkout.dart';
-import 'text_button_payment.dart';
+import 'checkout_empty_data.dart';
 
 class CheckoutScreen extends StatefulWidget {
   const CheckoutScreen({Key? key}) : super(key: key);
@@ -18,37 +20,100 @@ class CheckoutScreen extends StatefulWidget {
 
 class _CheckoutScreenState extends State<CheckoutScreen> {
   late double totalSum = 345000;
+
   @override
   Widget build(BuildContext context) {
+    CheckoutBloc myCheckout = context.read<CheckoutBloc>();
+
     return Scaffold(
       appBar: AppBarWithActions(
         titlePage: 'Checkout',
         actions: [
-          {'onPressed': () {}, 'icon': Icons.delete},
+          {
+            'onPressed': () {
+              myCheckout.add(const DeleteAllCheckoutData(products: []));
+            },
+            'icon': Icons.delete
+          },
         ],
       ),
-      body: Padding(
-        padding: EdgeInsets.symmetric(
-          vertical: getProportionateScreenWidth(10),
-          horizontal: getProportionateScreenWidth(20),
-        ),
-        child: ListView.builder(
-            physics: const BouncingScrollPhysics(),
-            itemCount: listCheckout.length,
-            itemBuilder: (BuildContext ctx, int index) {
-              return BodyCheckout(
-                img: listCheckout[index]['img'],
-                titleItem: listCheckout[index]['title'],
-                totalItem: listCheckout[index]['totalItem'].toDouble(),
-                harga: listCheckout[index]['harga'].toDouble(),
+      body: BlocBuilder<CheckoutBloc, CheckoutState>(
+        bloc: myCheckout,
+        builder: (context, state) {
+          if (state is CheckoutLoaded) {
+            if (state.products.isNotEmpty) {
+              return Padding(
+                padding: EdgeInsets.symmetric(
+                  vertical: getProportionateScreenWidth(10),
+                  horizontal: getProportionateScreenWidth(20),
+                ),
+                child: ListView.builder(
+                  physics: const BouncingScrollPhysics(),
+                  itemCount: state.products.length,
+                  itemBuilder: (BuildContext ctx, int index) {
+                    return BodyCheckout(
+                      img: state.products[index].img,
+                      titleItem: state.products[index].title,
+                      totalItem: state.products[index].totalOrderItem,
+                      harga: state.products[index].harga,
+                      substractFunc: () {
+                        if (state.products[index].totalOrderItem > 1) {
+                          myCheckout.add(SubtractTotalOrderItem(
+                              product: state.products[index]));
+                        }
+                      },
+                      addFunc: () {
+                        myCheckout.add(
+                            AddTotalOrderItem(product: state.products[index]));
+                      },
+                      deleteFunc: () {
+                        myCheckout.add(
+                            DeleteCheckoutData(product: state.products[index]));
+                      },
+                    );
+                  },
+                ),
               );
-            }),
-      ),
-      bottomSheet: BottomWidget(
-        onPressed: () {
-          Navigator.pushNamed(context, PaymentScreen.routeName);
+            } else {
+              return const EmptyDataCheckout();
+            }
+          } else {
+            return const EmptyDataCheckout();
+          }
         },
-        child: TextPaymentButton(total: totalSum.toInt()),
+      ),
+      bottomSheet: BlocBuilder<CheckoutBloc, CheckoutState>(
+        bloc: myCheckout,
+        builder: (context, state) {
+          if (state is CheckoutLoaded && state.products.isNotEmpty) {
+            int sum = 0;
+            for (var element in state.products) {
+              sum += (element.harga * element.totalOrderItem);
+            }
+            return BottomWidget(
+              onPressed: () {
+                // Navigator.pushNamed(context, PaymentScreen.routeName,
+                //     arguments: PaymentArguments(totalSum.toInt(), listCheckout));
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => BlocProvider.value(
+                      value: myCheckout,
+                      child: PaymentScreen(
+                        totalCheckout: sum,
+                      ),
+                    ),
+                  ),
+                );
+              },
+              child: TextPaymentButton(
+                total: sum,
+                text: 'Continue to Payment',
+              ),
+            );
+          } else {
+            return const SizedBox();
+          }
+        },
       ),
     );
   }

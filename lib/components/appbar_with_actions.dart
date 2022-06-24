@@ -27,9 +27,7 @@ class AppBarWithActions extends StatelessWidget with PreferredSizeWidget {
                 horizontal: getProportionateScreenWidth(10),
               ),
               child: IconButton(
-                onPressed: () {
-                  action['onPressed'];
-                },
+                onPressed: action['onPressed'],
                 icon: Icon(
                   action['icon'],
                   color: primaryColor,

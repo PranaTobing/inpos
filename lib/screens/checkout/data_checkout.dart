@@ -1,4 +1,4 @@
-final List<Map> listCheckout = [
+final List<Map<String, dynamic>> listCheckout = [
   {
     'id': 2,
     'title': 'Nasi 1 porsi',

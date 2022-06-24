@@ -1,0 +1,221 @@
+{
+  "data": [
+    {
+      "id": 0,
+      "title": "Ayam Bakar 1 Ekor",
+      "img": "assets/images/food_ayam_bakar_1ekor.png",
+      "category": "listAyam",
+      "harga": 70000
+    },
+    {
+      "id": 1,
+      "title": "Ayam Bakar 1 Potong",
+      "img": "assets/images/food_ayam_bakar_1potong.png",
+      "category": "listAyam",
+      "harga": 20000
+    },
+    {
+      "id": 2,
+      "title": "Paha Ayam Bakar (5)",
+      "img": "assets/images/food_ayam_bakar_paha.png",
+      "category": "listAyam",
+      "harga": 35000
+    },
+    {
+      "id": 3,
+      "title": "Sayap Ayam Bakar (5)",
+      "img": "assets/images/food_ayam_bakar_sayap.png",
+      "category": "listAyam",
+      "harga": 38000
+    },
+    {
+      "id": 4,
+      "title": "Ayam Goreng Tepung",
+      "img": "assets/images/food_ayam_goreng_ketucky.png",
+      "category": "listAyam",
+      "harga": 18000
+    },
+    {
+      "id": 5,
+      "title": "Paket Nasi Ayam Katsu",
+      "img": "assets/images/food_ayam_paket_katsuudon.png",
+      "category": "listAyam",
+      "harga": 21000
+    },
+    {
+      "id": 6,
+      "title": "Paket Nasi Ikan",
+      "img": "assets/images/food_ikan_paket.png",
+      "category": "listIkan",
+      "harga": 50000
+    },
+    {
+      "id": 7,
+      "title": "Tumis Ikan Mujair",
+      "img": "assets/images/food_ikan_tumis_mujair.png",
+      "category": "listIkan",
+      "harga": 40000
+    },
+    {
+      "id": 8,
+      "title": "Ikan Goreng Mujair",
+      "img": "assets/images/food_ikan_goreng_mujair.png",
+      "category": "listIkan",
+      "harga": 41000
+    },
+    {
+      "id": 9,
+      "title": "Ikan Patin Bakar",
+      "img": "assets/images/food_ikan_patin.png",
+      "category": "listIkan",
+      "harga": 42000
+    },
+    {
+      "id": 10,
+      "title": "Ikan Gurame Bakar",
+      "img": "assets/images/food_ikan_bakar_gurame.png",
+      "category": "listIkan",
+      "harga": 60000
+    },
+    {
+      "id": 11,
+      "title": "Ikan Dori Fillet",
+      "img": "assets/images/food_ikan_fillet_dori.png",
+      "category": "listIkan",
+      "harga": 35000
+    },
+    {
+      "id": 12,
+      "title": "Ikan Kembung Goreng",
+      "img": "assets/images/food_ikan_goreng_kembung.png",
+      "category": "listIkan",
+      "harga": 15000
+    },
+    {
+      "id": 13,
+      "title": "Udang",
+      "img": "assets/images/food_ikan_udang.png",
+      "category": "listIkan",
+      "harga": 15000
+    },
+    {
+      "id": 14,
+      "title": "Nasi 1 porsi",
+      "img": "assets/images/food_nasi.png",
+      "category": "listNasi",
+      "harga": 6000
+    },
+    {
+      "id": 15,
+      "title": "Nasi 1/2 porsi",
+      "img": "assets/images/food_nasi.png",
+      "category": "listNasi",
+      "harga": 3000
+    },
+    {
+      "id": 16,
+      "title": "Nasi Goreng",
+      "img": "assets/images/food_nasi_goreng.png",
+      "category": "listNasi",
+      "harga": 25000
+    },
+    {
+      "id": 17,
+      "title": "Nasi Biryani",
+      "img": "assets/images/food_nasi_biryani.png",
+      "category": "listNasi",
+      "harga": 40000
+    },
+    {
+      "id": 18,
+      "title": "Burger Regular",
+      "img": "assets/images/food_burger_cheese_regular.png",
+      "category": "listBurger",
+      "harga": 26000
+    },
+    {
+      "id": 19,
+      "title": "Burger Large",
+      "img": "assets/images/food_burger_cheese_large.png",
+      "category": "listBurger",
+      "harga": 32000
+    },
+    {
+      "id": 20,
+      "title": "Kentang Goreng",
+      "img": "assets/images/food_burger_french_fries.png",
+      "category": "listBurger",
+      "harga": 18000
+    },
+    {
+      "id": 21,
+      "title": "Kopi Hitam",
+      "img": "assets/images/drink_hot_kopi_hitam.png",
+      "category": "listMinumanPanas",
+      "harga": 15000
+    },
+    {
+      "id": 22,
+      "title": "Espresso",
+      "img": "assets/images/drink_hot_kopi_espresso.png",
+      "category": "listMinumanPanas",
+      "harga": 18000
+    },
+    {
+      "id": 23,
+      "title": "Latte",
+      "img": "assets/images/drink_hot_kopi_capucino_latte.png",
+      "category": "listMinumanPanas",
+      "harga": 20000
+    },
+    {
+      "id": 24,
+      "title": "Es Kopi",
+      "img": "assets/images/drink_cool_es_kopi.png",
+      "category": "listMinumanDingin",
+      "harga": 15000
+    },
+    {
+      "id": 25,
+      "title": "Es Teh",
+      "img": "assets/images/drink_cool_es_teh.png",
+      "category": "listMinumanDingin",
+      "harga": 6000
+    },
+    {
+      "id": 26,
+      "title": "Cola",
+      "img": "assets/images/drink_cool_cola.png",
+      "category": "listMinumanDingin",
+      "harga": 10000
+    },
+    {
+      "id": 27,
+      "title": "Jus Alpukat",
+      "img": "assets/images/drink_cool_jus_alpukat.png",
+      "category": "listMinumanDingin",
+      "harga": 17000
+    },
+    {
+      "id": 28,
+      "title": "Jus Jeruk",
+      "img": "assets/images/drink_cool_jus_jeruk.png",
+      "category": "listMinumanDingin",
+      "harga": 17000
+    },
+    {
+      "id": 29,
+      "title": "Jus Mangga",
+      "img": "assets/images/drink_cool_jus_mangga.png",
+      "category": "listMinumanDingin",
+      "harga": 17000
+    },
+    {
+      "id": 30,
+      "title": "Jus Strawberry",
+      "img": "assets/images/drink_cool_jus_strawberry.png",
+      "category": "listMinumanDingin",
+      "harga": 17000
+    }
+  ]
+}
