@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:inpos/bloc/checkout/checkout_bloc.dart';
+import 'package:inpos/bloc/payment_cash/payment_cash_bloc.dart';
 
 import '../../components/appbar_with_noactions.dart';
 import '../../components/bottom_widget.dart';
 import '../../components/coming_soon_widget.dart';
 import '../../components/text_button_payment.dart';
 import '../../settings/size_config.dart';
-import 'payment_arguments.dart';
 import 'payment_cash_body.dart';
 import 'payment_constants.dart';
 import 'tab_payment_widget.dart';
 
 class PaymentScreen extends StatefulWidget {
-  const PaymentScreen({Key? key}) : super(key: key);
+  const PaymentScreen({Key? key, required this.totalCheckout})
+      : super(key: key);
+  final int totalCheckout;
 
   static String routeName = '/payment';
 
@@ -39,7 +43,8 @@ class _PaymentScreenState extends State<PaymentScreen>
 
   @override
   Widget build(BuildContext context) {
-    final args = ModalRoute.of(context)!.settings.arguments as PaymentArguments;
+    CheckoutBloc myCheckout = context.read<CheckoutBloc>();
+    PaymentCashBloc myPayment = context.read<PaymentCashBloc>();
 
     return Scaffold(
       appBar: const AppBarWithNoActions(titlePage: 'Payment'),
@@ -64,7 +69,7 @@ class _PaymentScreenState extends State<PaymentScreen>
                     physics: const NeverScrollableScrollPhysics(),
                     controller: tabController,
                     children: [
-                      PaymentCashBody(subTotal: args.totalHarga),
+                      PaymentCashBody(subTotal: widget.totalCheckout),
                       const ComingSoon(
                         text: 'e-Wallet Coming Soon',
                       ),
@@ -79,14 +84,34 @@ class _PaymentScreenState extends State<PaymentScreen>
           ),
         ),
       ),
-      bottomSheet: BottomWidget(
-        onPressed: () {
-          // Navigator.pushNamed(context, CheckoutScreen.routeName);
+      bottomSheet: BlocBuilder<CheckoutBloc, CheckoutState>(
+        bloc: myCheckout,
+        builder: (context, checkoutState) {
+          if (checkoutState is CheckoutLoaded) {
+            return BlocBuilder<PaymentCashBloc, PaymentCashState>(
+              bloc: myPayment,
+              builder: (context, paymentCashState) {
+                if (paymentCashState is PaymentCashLoaded &&
+                    paymentCashState.payment.change >= 0) {
+                  return BottomWidget(
+                    onPressed: () {
+                      // Navigator.pushNamed(context, CheckoutScreen.routeName);
+                      // print struk dan balik ke dashboard/checkoutpage
+                    },
+                    child: TextPaymentButton(
+                      total: paymentCashState.payment.total.toInt(),
+                      text: 'Pay',
+                    ),
+                  );
+                } else {
+                  return const SizedBox();
+                }
+              },
+            );
+          } else {
+            return const SizedBox();
+          }
         },
-        child: TextPaymentButton(
-          total: args.totalHarga,
-          text: 'Pay',
-        ),
       ),
     );
   }

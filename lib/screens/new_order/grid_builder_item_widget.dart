@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:inpos/models/product_model.dart';
 import 'package:inpos/settings/size_config.dart';
 
 import 'item_order_widget.dart';
@@ -9,7 +10,7 @@ class GridBuilderItemWidget extends StatelessWidget {
     required this.listData,
   }) : super(key: key);
 
-  final List<Map> listData;
+  final List<Product> listData;
 
   @override
   Widget build(BuildContext context) {
@@ -23,10 +24,10 @@ class GridBuilderItemWidget extends StatelessWidget {
       ),
       itemCount: listData.length,
       itemBuilder: (BuildContext ctx, index) {
-        return ItemOrderWidget(
-          img: listData[index]['img'],
-          harga: listData[index]['harga'],
-          title: listData[index]['title'],
+        return Padding(
+          padding:
+              EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(3)),
+          child: ItemOrderWidget(product: listData[index]),
         );
       },
     );

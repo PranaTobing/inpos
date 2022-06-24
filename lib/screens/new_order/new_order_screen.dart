@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:inpos/bloc/checkout/checkout_bloc.dart';
+import 'package:inpos/bloc/product_bloc/product_bloc.dart';
 import 'package:inpos/screens/checkout/checkout_screen.dart';
 import 'package:inpos/settings/constants.dart';
 
@@ -20,13 +23,15 @@ class NewOrderScreen extends StatefulWidget {
 
 class _NewOrderScreenState extends State<NewOrderScreen>
     with SingleTickerProviderStateMixin {
+  final ProductBloc _productBloc = ProductBloc();
+
   late TabController tabController;
   late int _activeTab = 0;
 
   @override
   void initState() {
     tabController = TabController(length: 6, vsync: this);
-
+    _productBloc.add(GetProductList());
     super.initState();
   }
 
@@ -38,6 +43,8 @@ class _NewOrderScreenState extends State<NewOrderScreen>
 
   @override
   Widget build(BuildContext context) {
+    CheckoutBloc myCheckout = context.read<CheckoutBloc>();
+
     return Scaffold(
       backgroundColor: bgColor,
       appBar: AppBar(
@@ -59,18 +66,65 @@ class _NewOrderScreenState extends State<NewOrderScreen>
                 SizedBox(
                   height: getProportionateScreenWidth(20),
                 ),
+                // state.productModel.data.where((product) => product.category == 'listAyam').toList()
                 Expanded(
-                  child: TabBarView(
-                    physics: const BouncingScrollPhysics(),
-                    controller: tabController,
-                    children: [
-                      GridBuilderItemWidget(listData: listAyam),
-                      GridBuilderItemWidget(listData: listIkan),
-                      GridBuilderItemWidget(listData: listNasi),
-                      GridBuilderItemWidget(listData: listBurger),
-                      GridBuilderItemWidget(listData: listMinumanPanas),
-                      GridBuilderItemWidget(listData: listMinumanDingin),
-                    ],
+                  child: BlocBuilder<ProductBloc, ProductState>(
+                    bloc: _productBloc,
+                    buildWhen: (prev, state) {
+                      if (state is ProductLoaded) {
+                        return true;
+                      } else {
+                        return false;
+                      }
+                    },
+                    builder: (context, state) {
+                      if (state is ProductLoaded) {
+                        return TabBarView(
+                          physics: const BouncingScrollPhysics(),
+                          controller: tabController,
+                          children: [
+                            GridBuilderItemWidget(
+                              listData: state.productModel.data
+                                  .where((product) =>
+                                      product.category == 'listAyam')
+                                  .toList(),
+                            ),
+                            GridBuilderItemWidget(
+                              listData: state.productModel.data
+                                  .where((product) =>
+                                      product.category == 'listIkan')
+                                  .toList(),
+                            ),
+                            GridBuilderItemWidget(
+                              listData: state.productModel.data
+                                  .where((product) =>
+                                      product.category == 'listNasi')
+                                  .toList(),
+                            ),
+                            GridBuilderItemWidget(
+                              listData: state.productModel.data
+                                  .where((product) =>
+                                      product.category == 'listBurger')
+                                  .toList(),
+                            ),
+                            GridBuilderItemWidget(
+                              listData: state.productModel.data
+                                  .where((product) =>
+                                      product.category == 'listMinumanPanas')
+                                  .toList(),
+                            ),
+                            GridBuilderItemWidget(
+                              listData: state.productModel.data
+                                  .where((product) =>
+                                      product.category == 'listMinumanDingin')
+                                  .toList(),
+                            ),
+                          ],
+                        );
+                      } else {
+                        return Container();
+                      }
+                    },
                   ),
                 ),
               ],
@@ -78,11 +132,30 @@ class _NewOrderScreenState extends State<NewOrderScreen>
           ),
         ),
       ),
-      bottomSheet: BottomWidget(
-        onPressed: () {
-          Navigator.pushNamed(context, CheckoutScreen.routeName);
+      bottomSheet: BlocBuilder<CheckoutBloc, CheckoutState>(
+        bloc: myCheckout,
+        builder: (context, state) {
+          if (state is CheckoutLoaded && state.products.isNotEmpty) {
+            int sum = 0;
+            for (var element in state.products) {
+              sum += (element.harga * element.totalOrderItem);
+            }
+            return BottomWidget(
+              onPressed: () {
+                // Navigator.pushNamed(context, CheckoutScreen.routeName);
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => BlocProvider.value(
+                    value: myCheckout,
+                    child: const CheckoutScreen(),
+                  ),
+                ));
+              },
+              child: TextCheckoutButton(total: sum),
+            );
+          } else {
+            return const SizedBox();
+          }
         },
-        child: const TextCheckoutButton(total: 167000),
       ),
     );
   }

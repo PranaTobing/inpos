@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../settings/constants.dart';
 import '../settings/size_config.dart';
 
 class AppBarWithNoActions extends StatelessWidget with PreferredSizeWidget {
