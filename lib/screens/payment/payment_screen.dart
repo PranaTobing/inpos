@@ -1,8 +1,15 @@
+import 'dart:io';
+
+import 'package:blue_thermal_printer/blue_thermal_printer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:inpos/bloc/checkout/checkout_bloc.dart';
 import 'package:inpos/bloc/payment_cash/payment_cash_bloc.dart';
+import 'package:inpos/screens/main_screen.dart';
+import 'package:path_provider/path_provider.dart';
 
+import '../../blue_thermal/print_receipt.dart';
 import '../../components/appbar_with_noactions.dart';
 import '../../components/bottom_widget.dart';
 import '../../components/coming_soon_widget.dart';
@@ -30,11 +37,39 @@ class _PaymentScreenState extends State<PaymentScreen>
   late TabController tabController;
   late int _activeTab = 0;
 
+  BluetoothDevice device = BluetoothDevice.fromMap({
+    'name': 'RPN02N',
+    'address': '66:32:B8:12:86:C9',
+  });
+  BlueThermalPrinter printer = BlueThermalPrinter.instance;
+  String? pathImage;
+  PrintReceipt? printReceipt;
+
+  initSavetoPath() async {
+    var bytes =
+        await rootBundle.load("assets/images/logo_jabarindo_200_bw.jpg");
+    String dir = (await getApplicationDocumentsDirectory()).path;
+    const filename = 'logo_jabarindo_200_bw.jpg';
+    writeToFile(bytes, '$dir/$filename');
+    setState(() {
+      pathImage = '$dir/$filename';
+    });
+  }
+
+  Future<void> writeToFile(ByteData data, String path) {
+    final buffer = data.buffer;
+    return File(path).writeAsBytes(
+        buffer.asUint8List(data.offsetInBytes, data.lengthInBytes));
+  }
+
   @override
   void initState() {
     tabController = TabController(length: 3, vsync: this);
 
     super.initState();
+    initSavetoPath();
+    printReceipt = PrintReceipt();
+    printer.connect(device);
   }
 
   @override
@@ -95,6 +130,17 @@ class _PaymentScreenState extends State<PaymentScreen>
                     onPressed: () {
                       // Navigator.pushNamed(context, CheckoutScreen.routeName);
                       // print struk dan balik ke dashboard/checkoutpage
+                      printReceipt!.content(
+                        pathImage!,
+                        paymentCashState.payment.subTotal,
+                        paymentCashState.payment.tax,
+                        paymentCashState.payment.total,
+                        paymentCashState.payment.cash,
+                        paymentCashState.payment.change,
+                        checkoutState.products,
+                      );
+                      // Navigator.pushNamedAndRemoveUntil(
+                      //     context, MainScreen.routeName, (route) => false);
                     },
                     child: TextPaymentButton(
                       total: paymentCashState.payment.total.toInt(),
