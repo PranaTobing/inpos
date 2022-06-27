@@ -10,6 +10,8 @@ import '../../components/text_button_payment.dart';
 import '../../settings/size_config.dart';
 import 'payment_cash_body.dart';
 import 'payment_constants.dart';
+import 'payment_ewallet_body.dart';
+import 'payment_wallet_bank_grid.dart';
 import 'tab_payment_widget.dart';
 
 class PaymentScreen extends StatefulWidget {
@@ -47,7 +49,7 @@ class _PaymentScreenState extends State<PaymentScreen>
     PaymentCashBloc myPayment = context.read<PaymentCashBloc>();
 
     return Scaffold(
-      appBar: const AppBarWithNoActions(titlePage: 'Payment'),
+      appBar: const AppBarWithNoActions(titlePage: 'Pembayaran'),
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(
@@ -70,12 +72,8 @@ class _PaymentScreenState extends State<PaymentScreen>
                     controller: tabController,
                     children: [
                       PaymentCashBody(subTotal: widget.totalCheckout),
-                      const ComingSoon(
-                        text: 'e-Wallet Coming Soon',
-                      ),
-                      const ComingSoon(
-                        text: 'debit Coming Soon',
-                      ),
+                      GridBuilderPaymentBankWallet(listData: paymentBanks),
+                      GridBuilderPaymentBankWallet(listData: paymentEWallets),
                     ],
                   ),
                 ),
@@ -87,7 +85,7 @@ class _PaymentScreenState extends State<PaymentScreen>
       bottomSheet: BlocBuilder<CheckoutBloc, CheckoutState>(
         bloc: myCheckout,
         builder: (context, checkoutState) {
-          if (checkoutState is CheckoutLoaded) {
+          if (checkoutState is CheckoutLoaded && _activeTab == 0) {
             return BlocBuilder<PaymentCashBloc, PaymentCashState>(
               bloc: myPayment,
               builder: (context, paymentCashState) {
@@ -100,7 +98,7 @@ class _PaymentScreenState extends State<PaymentScreen>
                     },
                     child: TextPaymentButton(
                       total: paymentCashState.payment.total.toInt(),
-                      text: 'Pay',
+                      text: 'Cetak Struk',
                     ),
                   );
                 } else {

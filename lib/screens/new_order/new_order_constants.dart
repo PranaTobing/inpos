@@ -1,12 +1,12 @@
-const String appBarTitile = 'New Order';
+const String appBarTitile = 'Pesanan Baru';
 
 final List<Map> tabItems = [
-  {'id': 0, 'title': 'Chicken', 'icon': 'assets/icons/food_chicken.svg'},
-  {'id': 1, 'title': 'Fish', 'icon': 'assets/icons/food_fish.svg'},
-  {'id': 2, 'title': 'Rice', 'icon': 'assets/icons/food_rice.svg'},
+  {'id': 0, 'title': 'Ayam', 'icon': 'assets/icons/food_chicken.svg'},
+  {'id': 1, 'title': 'Ikan', 'icon': 'assets/icons/food_fish.svg'},
+  {'id': 2, 'title': 'Nasi', 'icon': 'assets/icons/food_rice.svg'},
   {'id': 3, 'title': 'Burger', 'icon': 'assets/icons/food_burger.svg'},
-  {'id': 4, 'title': 'Hot Drink', 'icon': 'assets/icons/drink_coffee.svg'},
-  {'id': 5, 'title': 'Cool Drink', 'icon': 'assets/icons/drink_boba.svg'},
+  {'id': 4, 'title': 'Minuman\nPanas', 'icon': 'assets/icons/drink_coffee.svg'},
+  {'id': 5, 'title': 'Minuman\nDingin', 'icon': 'assets/icons/drink_boba.svg'},
 ];
 
 final List<Map> listNasi = [

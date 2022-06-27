@@ -20,7 +20,7 @@ class TextCheckoutButton extends StatelessWidget {
         ),
         Row(
           children: const [
-            Text('Checkout'),
+            Text('Periksa Kembali'),
             Icon(
               Icons.arrow_forward_ios,
               size: 16,

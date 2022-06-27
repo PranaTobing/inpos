@@ -22,3 +22,11 @@ class ChangePaymentCash extends PaymentCashEvent {
   @override
   List<Object> get props => [payment];
 }
+
+class ResetPaymentCash extends PaymentCashEvent {
+  final PaymentCash payment;
+  const ResetPaymentCash({required this.payment});
+
+  @override
+  List<Object> get props => [payment];
+}

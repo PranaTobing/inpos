@@ -1,3 +1,3 @@
-const String dashboard = 'Dashboard';
-const String onlineOrder = 'Online Order';
-const String settings = 'Settings';
+const String dashboard = 'Beranda';
+const String onlineOrder = 'Pesanan Online';
+const String settings = 'Pengaturan';

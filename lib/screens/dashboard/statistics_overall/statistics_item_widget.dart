@@ -59,7 +59,7 @@ class StatItemWidget extends StatelessWidget {
         style: TextStyle(
             color: fgColor,
             fontWeight: isSubText ? FontWeight.w600 : FontWeight.w300,
-            fontSize: 12),
+            fontSize: 11),
       ),
     );
   }

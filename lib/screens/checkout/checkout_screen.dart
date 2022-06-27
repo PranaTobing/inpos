@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:inpos/bloc/checkout/checkout_bloc.dart';
+import 'package:inpos/bloc/payment_cash/payment_cash_bloc.dart';
+import 'package:inpos/models/payment_cash.dart';
 import 'package:inpos/screens/payment/payment_screen.dart';
 
 import '../../components/appbar_with_actions.dart';
@@ -24,10 +26,11 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
   @override
   Widget build(BuildContext context) {
     CheckoutBloc myCheckout = context.read<CheckoutBloc>();
+    PaymentCashBloc myPayment = context.read<PaymentCashBloc>();
 
     return Scaffold(
       appBar: AppBarWithActions(
-        titlePage: 'Checkout',
+        titlePage: 'Periksa Kembali',
         actions: [
           {
             'onPressed': () {
@@ -82,33 +85,48 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
           }
         },
       ),
-      bottomSheet: BlocBuilder<CheckoutBloc, CheckoutState>(
-        bloc: myCheckout,
-        builder: (context, state) {
-          if (state is CheckoutLoaded && state.products.isNotEmpty) {
-            int sum = 0;
-            for (var element in state.products) {
-              sum += (element.harga * element.totalOrderItem);
-            }
-            return BottomWidget(
-              onPressed: () {
-                // Navigator.pushNamed(context, PaymentScreen.routeName,
-                //     arguments: PaymentArguments(totalSum.toInt(), listCheckout));
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => BlocProvider.value(
-                      value: myCheckout,
-                      child: PaymentScreen(
-                        totalCheckout: sum,
-                      ),
+      bottomSheet: BlocBuilder<PaymentCashBloc, PaymentCashState>(
+        bloc: myPayment,
+        builder: (context, statePayment) {
+          if (statePayment is PaymentCashLoaded) {
+            return BlocBuilder<CheckoutBloc, CheckoutState>(
+              bloc: myCheckout,
+              builder: (context, state) {
+                if (state is CheckoutLoaded && state.products.isNotEmpty) {
+                  int sum = 0;
+                  for (var element in state.products) {
+                    sum += (element.harga * element.totalOrderItem);
+                  }
+                  return BottomWidget(
+                    onPressed: () {
+                      myPayment.add(ResetPaymentCash(
+                        payment: PaymentCash(
+                          subTotal: sum.toDouble(),
+                          cash: 0,
+                        ),
+                      ));
+                      // Navigator.pushNamed(context, PaymentScreen.routeName,
+                      //     arguments: PaymentArguments(totalSum.toInt(), listCheckout));
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => BlocProvider.value(
+                            value: myCheckout,
+                            child: PaymentScreen(
+                              totalCheckout: sum,
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                    child: TextPaymentButton(
+                      total: sum,
+                      text: 'Pembayaran',
                     ),
-                  ),
-                );
+                  );
+                } else {
+                  return const SizedBox();
+                }
               },
-              child: TextPaymentButton(
-                total: sum,
-                text: 'Continue to Payment',
-              ),
             );
           } else {
             return const SizedBox();

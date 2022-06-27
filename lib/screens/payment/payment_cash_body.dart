@@ -90,7 +90,7 @@ class _PaymentCashBodyState extends State<PaymentCashBody> {
                     border: OutlineInputBorder(
                       borderSide: BorderSide(color: primaryColor, width: 2.0),
                     ),
-                    labelText: 'Cash Amount',
+                    labelText: 'Jumlah Uang',
                     labelStyle: TextStyle(color: primaryColor),
                     focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: primaryColor, width: 2.0),
@@ -126,7 +126,7 @@ class _PaymentCashBodyState extends State<PaymentCashBody> {
                     rows: [
                       dataRow(title: 'Sub Total', amount: widget.subTotal),
                       dataRow(
-                        title: 'Tax (11%)',
+                        title: 'Pajak (11%)',
                         amount: state.payment.tax.toInt(),
                       ),
                       dataRow(
@@ -134,11 +134,11 @@ class _PaymentCashBodyState extends State<PaymentCashBody> {
                         amount: state.payment.total.toInt(),
                       ),
                       dataRow(
-                        title: 'Cash',
+                        title: 'Uang',
                         amount: state.payment.cash.toInt(),
                       ),
                       dataRow(
-                          title: 'Change',
+                          title: 'Kembalian',
                           amount: state.payment.change.toInt(),
                           isMinus: state.payment.change.toInt() < 0),
                     ],
