@@ -29,6 +29,7 @@ class PrintReceipt {
       printer.printCustom('Kasir: Nama Kasir', 0, 2);
       printer.printCustom('================================', 1, 1);
       printer.printCustom(DateFormat('dd-MM-yyyy HH:mm:ss').format(now), 0, 2);
+      printer.printNewLine();
 
       for (var product in products) {
         totalQty += product.totalOrderItem;
@@ -36,7 +37,9 @@ class PrintReceipt {
             '${product.harga * product.totalOrderItem}', 1,
             format: "%-15s %15s %n");
       }
-      printer.printLeftRight('item: ${products.length}', 'total: $totalQty', 0);
+      printer.printNewLine();
+      printer.printLeftRight('item: ${products.length}', 'total: $totalQty', 1,
+          format: "%-15s %15s %n");
       printer.printNewLine();
       printer.printLeftRight('Sub Total', '${subTotal.toInt()}', 1,
           format: "%-15s %15s %n");
@@ -50,7 +53,7 @@ class PrintReceipt {
           format: "%-15s %15s %n");
       printer.printNewLine();
       printer.printCustom('================================', 1, 1);
-      printer.printLeftRight("LEFT", "RIGHT", 1, format: "%-15s %15s %n");
+      // printer.printLeftRight("LEFT", "RIGHT", 1, format: "%-15s %15s %n");
       printer.printCustom("TERIMA KASIH", 1, 1);
       printer.printCustom("Selamat Menikmati", 1, 1);
       printer.printNewLine();

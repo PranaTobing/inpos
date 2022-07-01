@@ -6,18 +6,18 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:inpos/bloc/checkout/checkout_bloc.dart';
 import 'package:inpos/bloc/payment_cash/payment_cash_bloc.dart';
-import 'package:inpos/screens/main_screen.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../blue_thermal/print_receipt.dart';
 import '../../components/appbar_with_noactions.dart';
 import '../../components/bottom_widget.dart';
-import '../../components/coming_soon_widget.dart';
 import '../../components/text_button_payment.dart';
+import '../../models/payment_cash.dart';
 import '../../settings/size_config.dart';
+import '../new_order/new_order_screen.dart';
 import 'payment_cash_body.dart';
 import 'payment_constants.dart';
-import 'payment_ewallet_body.dart';
 import 'payment_wallet_bank_grid.dart';
 import 'tab_payment_widget.dart';
 
@@ -37,13 +37,27 @@ class _PaymentScreenState extends State<PaymentScreen>
   late TabController tabController;
   late int _activeTab = 0;
 
-  BluetoothDevice device = BluetoothDevice.fromMap({
-    'name': 'RPN02N',
-    'address': '66:32:B8:12:86:C9',
-  });
+  BluetoothDevice device = BluetoothDevice(
+    'namecontoh',
+    'addresscontoh',
+  );
   BlueThermalPrinter printer = BlueThermalPrinter.instance;
   String? pathImage;
   PrintReceipt? printReceipt;
+
+  String? name;
+  String? address;
+
+  Future<void> getPreference() async {
+    final localData = await SharedPreferences.getInstance();
+
+    if (localData.containsKey('key-is-bluetooth-saved')) {
+      name = localData.getString('key-bluetooth-name');
+      address = localData.getString('key-bluetooth-address');
+      device = BluetoothDevice(name, address);
+      printer.connect(device);
+    }
+  }
 
   initSavetoPath() async {
     var bytes =
@@ -69,7 +83,6 @@ class _PaymentScreenState extends State<PaymentScreen>
     super.initState();
     initSavetoPath();
     printReceipt = PrintReceipt();
-    printer.connect(device);
   }
 
   @override
@@ -126,25 +139,86 @@ class _PaymentScreenState extends State<PaymentScreen>
               builder: (context, paymentCashState) {
                 if (paymentCashState is PaymentCashLoaded &&
                     paymentCashState.payment.change >= 0) {
-                  return BottomWidget(
-                    onPressed: () {
-                      // Navigator.pushNamed(context, CheckoutScreen.routeName);
-                      // print struk dan balik ke dashboard/checkoutpage
-                      printReceipt!.content(
-                        pathImage!,
-                        paymentCashState.payment.subTotal,
-                        paymentCashState.payment.tax,
-                        paymentCashState.payment.total,
-                        paymentCashState.payment.cash,
-                        paymentCashState.payment.change,
-                        checkoutState.products,
-                      );
-                      // Navigator.pushNamedAndRemoveUntil(
-                      //     context, MainScreen.routeName, (route) => false);
-                    },
-                    child: TextPaymentButton(
-                      total: paymentCashState.payment.total.toInt(),
-                      text: 'Cetak Struk',
+                  return FutureBuilder(
+                    future: getPreference(),
+                    builder: (context, _) => BottomWidget(
+                      onPressed: () async {
+                        await printReceipt!.content(
+                          pathImage!,
+                          paymentCashState.payment.subTotal,
+                          paymentCashState.payment.tax,
+                          paymentCashState.payment.total,
+                          paymentCashState.payment.cash,
+                          paymentCashState.payment.change,
+                          checkoutState.products,
+                        );
+
+                        showDialog<String>(
+                          context: context,
+                          barrierDismissible: false,
+                          builder: (BuildContext context) => AlertDialog(
+                            title: const Text('Pembayaran Sukses!'),
+                            content: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const Text(
+                                    'Cetak Ulang untuk cetak ulang struk dan Menu Pesanan untuk melakukan pemesanan baru'),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: <Widget>[
+                                    TextButton(
+                                        child: const Text(
+                                          'Cetak Ulang',
+                                        ),
+                                        onPressed: () {
+                                          printReceipt!.content(
+                                            pathImage!,
+                                            paymentCashState.payment.subTotal,
+                                            paymentCashState.payment.tax,
+                                            paymentCashState.payment.total,
+                                            paymentCashState.payment.cash,
+                                            paymentCashState.payment.change,
+                                            checkoutState.products,
+                                          );
+                                        }),
+                                    TextButton(
+                                      child: const Text(
+                                        'Menu Pesanan',
+                                        style: TextStyle(color: Colors.red),
+                                      ),
+                                      onPressed: () {
+                                        myPayment.add(const ResetPaymentCash(
+                                          payment: PaymentCash(
+                                            subTotal: 0,
+                                            cash: 0,
+                                          ),
+                                        ));
+                                        Navigator.of(context)
+                                            .pushAndRemoveUntil(
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                BlocProvider.value(
+                                              value: myCheckout,
+                                              child: const NewOrderScreen(),
+                                            ),
+                                          ),
+                                          ModalRoute.withName('/home'),
+                                        );
+                                      },
+                                    )
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                      child: TextPaymentButton(
+                        total: paymentCashState.payment.total.toInt(),
+                        text: 'Cetak Struk',
+                      ),
                     ),
                   );
                 } else {

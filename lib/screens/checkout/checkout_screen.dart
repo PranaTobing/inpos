@@ -53,6 +53,10 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                 child: ListView.builder(
                   physics: const BouncingScrollPhysics(),
                   itemCount: state.products.length,
+                  padding: EdgeInsets.only(
+                    top: getProportionateScreenWidth(10),
+                    bottom: getProportionateScreenWidth(75),
+                  ),
                   itemBuilder: (BuildContext ctx, int index) {
                     return BodyCheckout(
                       img: state.products[index].img,

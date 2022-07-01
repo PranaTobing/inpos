@@ -85,7 +85,8 @@ class _PaymentCashBodyState extends State<PaymentCashBody> {
                   ),
                 ),
                 TextField(
-                  controller: _cashAmountController,
+                  controller: _cashAmountController
+                    ..text = state.payment.cash.toString(),
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(
                       borderSide: BorderSide(color: primaryColor, width: 2.0),
