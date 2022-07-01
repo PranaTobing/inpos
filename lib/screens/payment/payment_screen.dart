@@ -143,15 +143,15 @@ class _PaymentScreenState extends State<PaymentScreen>
                     future: getPreference(),
                     builder: (context, _) => BottomWidget(
                       onPressed: () async {
-                        await printReceipt!.content(
-                          pathImage!,
-                          paymentCashState.payment.subTotal,
-                          paymentCashState.payment.tax,
-                          paymentCashState.payment.total,
-                          paymentCashState.payment.cash,
-                          paymentCashState.payment.change,
-                          checkoutState.products,
-                        );
+                        // await printReceipt!.content(
+                        //   pathImage!,
+                        //   paymentCashState.payment.subTotal,
+                        //   paymentCashState.payment.tax,
+                        //   paymentCashState.payment.total,
+                        //   paymentCashState.payment.cash,
+                        //   paymentCashState.payment.change,
+                        //   checkoutState.products,
+                        // );
 
                         showDialog<String>(
                           context: context,
@@ -173,15 +173,15 @@ class _PaymentScreenState extends State<PaymentScreen>
                                           'Cetak Ulang',
                                         ),
                                         onPressed: () {
-                                          printReceipt!.content(
-                                            pathImage!,
-                                            paymentCashState.payment.subTotal,
-                                            paymentCashState.payment.tax,
-                                            paymentCashState.payment.total,
-                                            paymentCashState.payment.cash,
-                                            paymentCashState.payment.change,
-                                            checkoutState.products,
-                                          );
+                                          // printReceipt!.content(
+                                          //   pathImage!,
+                                          //   paymentCashState.payment.subTotal,
+                                          //   paymentCashState.payment.tax,
+                                          //   paymentCashState.payment.total,
+                                          //   paymentCashState.payment.cash,
+                                          //   paymentCashState.payment.change,
+                                          //   checkoutState.products,
+                                          // );
                                         }),
                                     TextButton(
                                       child: const Text(
@@ -189,6 +189,10 @@ class _PaymentScreenState extends State<PaymentScreen>
                                         style: TextStyle(color: Colors.red),
                                       ),
                                       onPressed: () {
+                                        // delete state checkout and paymentcash
+                                        myCheckout.add(
+                                            const DeleteAllCheckoutData(
+                                                products: []));
                                         myPayment.add(const ResetPaymentCash(
                                           payment: PaymentCash(
                                             subTotal: 0,
