@@ -6,7 +6,6 @@ import 'package:inpos/settings/constants.dart';
 import 'package:inpos/settings/size_config.dart';
 
 import '../components/coming_soon_widget.dart';
-import 'navigation_bar/menu_bar_widget.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -17,12 +16,16 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
+  int currentTab = 0;
   static const List<Widget> _widgetOptions = <Widget>[
     DashboardWidget(),
     ComingSoon(text: 'Page2: Order History'),
     ComingSoon(text: 'Page3: Order Online'),
     SettingPageScreen(),
   ];
+
+  final PageStorageBucket bucket = PageStorageBucket();
+  Widget currentScreen = _widgetOptions[0];
 
   void _onItemTapped(int index) {
     setState(() {
@@ -39,11 +42,10 @@ class _MainScreenState extends State<MainScreen> {
         padding: EdgeInsets.symmetric(
           horizontal: getProportionateScreenWidth(16),
         ),
-        child: _widgetOptions.elementAt(_selectedIndex),
-      ),
-      bottomNavigationBar: MenuBarWidget(
-        selectedPage: _selectedIndex,
-        onTap: _onItemTapped,
+        child: PageStorage(
+          bucket: bucket,
+          child: currentScreen,
+        ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
@@ -52,6 +54,100 @@ class _MainScreenState extends State<MainScreen> {
         child: const Icon(
           Icons.qr_code_scanner,
           size: 32.0,
+        ),
+      ),
+      /*
+      bottomNavigationBar: MenuBarWidget(
+        selectedPage: _selectedIndex,
+        onTap: _onItemTapped,
+      ),
+      */
+      bottomNavigationBar: BottomAppBar(
+        shape: const CircularNotchedRectangle(),
+        notchMargin: 10,
+        child: Container(
+          padding: EdgeInsets.symmetric(
+            horizontal: getProportionateScreenWidth(15),
+          ),
+          height: getProportionateScreenWidth(60),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  MaterialButton(
+                    minWidth: 40,
+                    onPressed: () {
+                      setState(() {
+                        currentScreen = _widgetOptions[
+                            0]; // if user taps on this dashboard tab will be active
+                        currentTab = 0;
+                      });
+                    },
+                    child: Icon(
+                      Icons.home,
+                      color: currentTab == 0 ? primaryColor : Colors.grey,
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 15,
+                  ),
+                  MaterialButton(
+                    minWidth: 40,
+                    onPressed: () {
+                      setState(() {
+                        currentScreen = _widgetOptions[
+                            1]; // if user taps on this dashboard tab will be active
+                        currentTab = 1;
+                      });
+                    },
+                    child: Icon(
+                      Icons.access_time,
+                      color: currentTab == 1 ? primaryColor : Colors.grey,
+                    ),
+                  )
+                ],
+              ),
+              // right side menu
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  MaterialButton(
+                    minWidth: 40,
+                    onPressed: () {
+                      setState(() {
+                        currentScreen = _widgetOptions[
+                            2]; // if user taps on this dashboard tab will be active
+                        currentTab = 2;
+                      });
+                    },
+                    child: Icon(
+                      Icons.wifi,
+                      color: currentTab == 2 ? primaryColor : Colors.grey,
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 15,
+                  ),
+                  MaterialButton(
+                    minWidth: 40,
+                    onPressed: () {
+                      setState(() {
+                        currentScreen = _widgetOptions[
+                            3]; // if user taps on this dashboard tab will be active
+                        currentTab = 3;
+                      });
+                    },
+                    child: Icon(
+                      Icons.settings,
+                      color: currentTab == 3 ? primaryColor : Colors.grey,
+                    ),
+                  )
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );
