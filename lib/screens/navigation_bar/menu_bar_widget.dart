@@ -12,8 +12,12 @@ class MenuBarWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
+      type: BottomNavigationBarType.fixed,
+      showSelectedLabels: false,
+      showUnselectedLabels: false,
       items: <BottomNavigationBarItem>[
-        menuBarItem(icon: Icons.radar, label: dashboard),
+        menuBarItem(icon: Icons.home, label: dashboard),
+        menuBarItem(icon: Icons.access_time, label: history),
         menuBarItem(icon: Icons.wifi, label: onlineOrder),
         menuBarItem(icon: Icons.settings, label: settings),
       ],
