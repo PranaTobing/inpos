@@ -128,7 +128,7 @@ class _BluetoothDeviceStateSetting extends State<BluetoothDeviceSetting> {
                                 style: TextStyle(color: Colors.white),
                               ),
                               backgroundColor: (primaryColor),
-                              duration: Duration(microseconds: 500),
+                              duration: Duration(milliseconds: 500),
                             );
                             ScaffoldMessenger.of(context)
                                 .showSnackBar(snackBar);

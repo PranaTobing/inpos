@@ -142,8 +142,8 @@ class _PaymentScreenState extends State<PaymentScreen>
                   return FutureBuilder(
                     future: getPreference(),
                     builder: (context, _) => BottomWidget(
-                      onPressed: () async {
-                        await printReceipt!.content(
+                      onPressed: () {
+                        printReceipt!.content(
                           pathImage!,
                           paymentCashState.payment.subTotal,
                           paymentCashState.payment.tax,
