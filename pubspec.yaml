@@ -9,6 +9,7 @@ environment:
 
 dependencies:
   bloc: ^8.0.3
+  blue_thermal_printer: ^1.2.0
   cupertino_icons: ^1.0.2
   dio: ^4.0.6
   equatable: ^2.0.3
@@ -17,16 +18,25 @@ dependencies:
   flutter_bloc: ^8.0.1
   flutter_svg: ^1.1.0
   intl: ^0.17.0
+  path_provider: ^2.0.11
+  shared_preferences: ^2.0.15
   top_snackbar_flutter: ^2.0.0
+  video_player: ^2.4.5
 
 dev_dependencies:
   flutter_lints: ^2.0.0
   flutter_test:
     sdk: flutter
+  flutter_native_splash: ^2.2.3+1
+
+flutter_native_splash:
+  color: "#FFFFFF"
 
 flutter:
   uses-material-design: true
   assets:
     - assets/icons/
     - assets/images/
+    - assets/videos/
     - assets/example_data/
+    - assets/images/groceries_product/

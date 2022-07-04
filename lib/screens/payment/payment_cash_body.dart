@@ -42,109 +42,115 @@ class _PaymentCashBodyState extends State<PaymentCashBody> {
       bloc: myPayment,
       builder: (context, state) {
         if (state is PaymentCashLoaded) {
-          return Padding(
-            padding: EdgeInsets.symmetric(
-                horizontal: getProportionateScreenWidth(20)),
-            child: Column(
-              children: [
-                Container(
-                  height: getProportionateScreenWidth(180),
-                  padding: EdgeInsets.symmetric(
-                    vertical: getProportionateScreenWidth(20),
-                  ),
-                  child: GridView.builder(
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 3,
-                            crossAxisSpacing: 10,
-                            mainAxisSpacing: 10,
-                            childAspectRatio: (1 / .4)),
-                    itemCount: listCashInstan.length,
-                    itemBuilder: (BuildContext ctx, index) {
-                      return PaymentInstan(
-                        amount: listCashInstan[index],
-                        onClick: () {
-                          _cashAmountController.text =
-                              _cashAmountController.text.isEmpty
-                                  ? (0 + listCashInstan[index]).toString()
-                                  : (int.parse(_cashAmountController.text) +
-                                          listCashInstan[index])
-                                      .toString();
-                          myPayment.add(
-                            ChangePaymentCash(
-                              payment: PaymentCash(
-                                subTotal: widget.subTotal.toDouble(),
-                                cash: int.parse(_cashAmountController.text)
-                                    .toDouble(),
+          return SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.symmetric(
+                  horizontal: getProportionateScreenWidth(20)),
+              child: Column(
+                children: [
+                  Container(
+                    height: getProportionateScreenWidth(180),
+                    padding: EdgeInsets.symmetric(
+                      vertical: getProportionateScreenWidth(20),
+                    ),
+                    child: GridView.builder(
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 3,
+                              crossAxisSpacing: 10,
+                              mainAxisSpacing: 10,
+                              childAspectRatio: (1 / .4)),
+                      itemCount: listCashInstan.length,
+                      itemBuilder: (BuildContext ctx, index) {
+                        return PaymentInstan(
+                          amount: listCashInstan[index],
+                          onClick: () {
+                            _cashAmountController.text =
+                                _cashAmountController.text.isEmpty
+                                    ? (0 + listCashInstan[index]).toString()
+                                    : (int.parse(_cashAmountController.text) +
+                                            listCashInstan[index])
+                                        .toString();
+                            myPayment.add(
+                              ChangePaymentCash(
+                                payment: PaymentCash(
+                                  subTotal: widget.subTotal.toDouble(),
+                                  cash: int.parse(_cashAmountController.text)
+                                      .toDouble(),
+                                ),
                               ),
-                            ),
-                          );
-                        },
+                            );
+                          },
+                        );
+                      },
+                    ),
+                  ),
+                  TextField(
+                    controller: _cashAmountController
+                      ..text = state.payment.cash.toInt().toString(),
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide(color: primaryColor, width: 2.0),
+                      ),
+                      labelText: 'Jumlah Uang',
+                      labelStyle: TextStyle(color: primaryColor),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: primaryColor, width: 2.0),
+                      ),
+                    ),
+                    keyboardType: TextInputType.number,
+                    onChanged: (textInput) {
+                      myPayment.add(
+                        ChangePaymentCash(
+                          payment: PaymentCash(
+                            subTotal: widget.subTotal.toDouble(),
+                            cash: textInput.isNotEmpty
+                                ? int.parse(textInput).toDouble()
+                                : 0,
+                          ),
+                        ),
                       );
                     },
                   ),
-                ),
-                TextField(
-                  controller: _cashAmountController,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(
-                      borderSide: BorderSide(color: primaryColor, width: 2.0),
-                    ),
-                    labelText: 'Cash Amount',
-                    labelStyle: TextStyle(color: primaryColor),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: primaryColor, width: 2.0),
-                    ),
+                  SizedBox(
+                    height: getProportionateScreenWidth(50),
                   ),
-                  keyboardType: TextInputType.number,
-                  onChanged: (textInput) {
-                    myPayment.add(
-                      ChangePaymentCash(
-                        payment: PaymentCash(
-                          subTotal: widget.subTotal.toDouble(),
-                          cash: textInput.isNotEmpty
-                              ? int.parse(textInput).toDouble()
-                              : 0,
+                  Container(
+                    padding: EdgeInsets.only(
+                      bottom: getProportionateScreenWidth(40),
+                    ),
+                    width: double.infinity,
+                    child: DataTable(
+                      columnSpacing: 83,
+                      headingRowHeight: 0,
+                      dataRowHeight: double.parse('40'),
+                      columns: const [
+                        DataColumn(label: Text('')),
+                        DataColumn(label: Text('')),
+                      ],
+                      rows: [
+                        dataRow(title: 'Sub Total', amount: widget.subTotal),
+                        dataRow(
+                          title: 'Pajak (11%)',
+                          amount: state.payment.tax.toInt(),
                         ),
-                      ),
-                    );
-                  },
-                ),
-                SizedBox(
-                  height: getProportionateScreenWidth(50),
-                ),
-                SizedBox(
-                  width: double.infinity,
-                  child: DataTable(
-                    columnSpacing: 83,
-                    headingRowHeight: 0,
-                    dataRowHeight: double.parse('40'),
-                    columns: const [
-                      DataColumn(label: Text('')),
-                      DataColumn(label: Text('')),
-                    ],
-                    rows: [
-                      dataRow(title: 'Sub Total', amount: widget.subTotal),
-                      dataRow(
-                        title: 'Tax (11%)',
-                        amount: state.payment.tax.toInt(),
-                      ),
-                      dataRow(
-                        title: 'Total',
-                        amount: state.payment.total.toInt(),
-                      ),
-                      dataRow(
-                        title: 'Cash',
-                        amount: state.payment.cash.toInt(),
-                      ),
-                      dataRow(
-                          title: 'Change',
-                          amount: state.payment.change.toInt(),
-                          isMinus: state.payment.change.toInt() < 0),
-                    ],
+                        dataRow(
+                          title: 'Total',
+                          amount: state.payment.total.toInt(),
+                        ),
+                        dataRow(
+                          title: 'Uang',
+                          amount: state.payment.cash.toInt(),
+                        ),
+                        dataRow(
+                            title: 'Kembalian',
+                            amount: state.payment.change.toInt(),
+                            isMinus: state.payment.change.toInt() < 0),
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           );
         } else {

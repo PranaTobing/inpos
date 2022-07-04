@@ -20,7 +20,7 @@ class TabItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(vertical: getProportionateScreenWidth(20)),
-      height: getProportionateScreenWidth(90),
+      height: getProportionateScreenWidth(110),
       width: getProportionateScreenWidth(80),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(
@@ -39,6 +39,7 @@ class TabItemWidget extends StatelessWidget {
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           SvgPicture.asset(
             icon,
@@ -46,9 +47,11 @@ class TabItemWidget extends StatelessWidget {
             width: getProportionateScreenWidth(22),
             color: isActive ? fgColor : colorBlack,
           ),
-          Text(
-            text,
-            style: TextStyle(color: isActive ? fgColor : colorBlack),
+          Flexible(
+            child: Text(
+              text,
+              style: TextStyle(color: isActive ? fgColor : colorBlack),
+            ),
           ),
         ],
       ),

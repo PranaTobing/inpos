@@ -9,15 +9,18 @@ class DashboardHeaderWidget extends StatelessWidget with PreferredSizeWidget {
   const DashboardHeaderWidget({Key? key}) : super(key: key);
 
   @override
-  Size get preferredSize => Size.fromHeight(getProportionateScreenHeight(65));
+  Size get preferredSize => Size.fromHeight(getProportionateScreenHeight(75));
 
   @override
   AppBar build(BuildContext context) {
     return AppBar(
       leading: Transform.translate(
         offset: const Offset(20, 0),
-        child: Image.asset(
-          leadingHeader,
+        child: Padding(
+          padding: EdgeInsets.all(getProportionateScreenWidth(11)),
+          child: Image.asset(
+            leadingHeader,
+          ),
         ),
       ),
       titleSpacing: 30,

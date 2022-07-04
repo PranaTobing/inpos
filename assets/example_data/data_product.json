@@ -16,14 +16,14 @@
     },
     {
       "id": 2,
-      "title": "Paha Ayam Bakar (5)",
+      "title": "Paha Ayam Bakar",
       "img": "assets/images/food_ayam_bakar_paha.png",
       "category": "listAyam",
       "harga": 35000
     },
     {
       "id": 3,
-      "title": "Sayap Ayam Bakar (5)",
+      "title": "Sayap Ayam Bakar",
       "img": "assets/images/food_ayam_bakar_sayap.png",
       "category": "listAyam",
       "harga": 38000
