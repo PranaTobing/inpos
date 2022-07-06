@@ -6,8 +6,8 @@ import 'package:inpos/models/product_model.dart';
 
 class DataProductProvider {
   Future<ProductModel> fetchProductList() async {
-    String jsonText =
-        await rootBundle.loadString('assets/example_data/data_product.json');
+    String jsonText = await rootBundle
+        .loadString('assets/example_data/data_product_groceries.json');
     final Map<String, dynamic> data = await json.decode(jsonText);
     return ProductModel.fromJson(data);
   }

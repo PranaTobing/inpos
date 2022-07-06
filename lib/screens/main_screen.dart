@@ -15,7 +15,6 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  int _selectedIndex = 0;
   int currentTab = 0;
   static const List<Widget> _widgetOptions = <Widget>[
     DashboardWidget(),
@@ -26,12 +25,6 @@ class _MainScreenState extends State<MainScreen> {
 
   final PageStorageBucket bucket = PageStorageBucket();
   Widget currentScreen = _widgetOptions[0];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {

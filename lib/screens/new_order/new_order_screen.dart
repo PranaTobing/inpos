@@ -30,7 +30,7 @@ class _NewOrderScreenState extends State<NewOrderScreen>
 
   @override
   void initState() {
-    tabController = TabController(length: 6, vsync: this);
+    tabController = TabController(length: 7, vsync: this);
     _productBloc.add(GetProductList());
     super.initState();
   }
@@ -85,38 +85,43 @@ class _NewOrderScreenState extends State<NewOrderScreen>
                           children: [
                             GridBuilderItemWidget(
                               listData: state.productModel.data
-                                  .where((product) =>
-                                      product.category == 'listAyam')
+                                  .where((product) => product.category == 'mie')
                                   .toList(),
                             ),
                             GridBuilderItemWidget(
                               listData: state.productModel.data
                                   .where((product) =>
-                                      product.category == 'listIkan')
+                                      product.category == 'makanan')
                                   .toList(),
                             ),
                             GridBuilderItemWidget(
                               listData: state.productModel.data
                                   .where((product) =>
-                                      product.category == 'listNasi')
+                                      product.category == 'minuman')
                                   .toList(),
                             ),
                             GridBuilderItemWidget(
                               listData: state.productModel.data
-                                  .where((product) =>
-                                      product.category == 'listBurger')
+                                  .where(
+                                      (product) => product.category == 'susu')
                                   .toList(),
                             ),
                             GridBuilderItemWidget(
                               listData: state.productModel.data
-                                  .where((product) =>
-                                      product.category == 'listMinumanPanas')
+                                  .where(
+                                      (product) => product.category == 'kopi')
                                   .toList(),
                             ),
                             GridBuilderItemWidget(
                               listData: state.productModel.data
-                                  .where((product) =>
-                                      product.category == 'listMinumanDingin')
+                                  .where(
+                                      (product) => product.category == 'beras')
+                                  .toList(),
+                            ),
+                            GridBuilderItemWidget(
+                              listData: state.productModel.data
+                                  .where(
+                                      (product) => product.category == 'minyak')
                                   .toList(),
                             ),
                           ],
@@ -137,8 +142,10 @@ class _NewOrderScreenState extends State<NewOrderScreen>
         builder: (context, state) {
           if (state is CheckoutLoaded && state.products.isNotEmpty) {
             int sum = 0;
+            int totalItem = 0;
             for (var element in state.products) {
               sum += (element.harga * element.totalOrderItem);
+              totalItem += element.totalOrderItem;
             }
             return BottomWidget(
               onPressed: () {
@@ -150,7 +157,10 @@ class _NewOrderScreenState extends State<NewOrderScreen>
                   ),
                 ));
               },
-              child: TextCheckoutButton(total: sum),
+              child: TextCheckoutButton(
+                total: sum,
+                totalItem: totalItem,
+              ),
             );
           } else {
             return const SizedBox();
@@ -180,7 +190,7 @@ class _NewOrderScreenState extends State<NewOrderScreen>
         labelPadding: EdgeInsets.symmetric(
           horizontal: getProportionateScreenWidth(8),
         ),
-        tabs: tabItems
+        tabs: tabGroceries
             .map(
               (item) => TabItemWidget(
                 icon: item['icon'],

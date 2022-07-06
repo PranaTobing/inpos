@@ -9,6 +9,16 @@ final List<Map> tabItems = [
   {'id': 5, 'title': 'Minuman\nDingin', 'icon': 'assets/icons/drink_boba.svg'},
 ];
 
+final List<Map> tabGroceries = [
+  {'id': 0, 'title': 'Mie', 'icon': 'assets/icons/icon_mie.svg'},
+  {'id': 1, 'title': 'Makanan', 'icon': 'assets/icons/food_chicken.svg'},
+  {'id': 2, 'title': 'Minuman', 'icon': 'assets/icons/drink_boba.svg'},
+  {'id': 3, 'title': 'Susu', 'icon': 'assets/icons/icon_susu.svg'},
+  {'id': 4, 'title': 'Kopi', 'icon': 'assets/icons/icon_kopi.svg'},
+  {'id': 5, 'title': 'Beras', 'icon': 'assets/icons/icon_beras.svg'},
+  {'id': 6, 'title': 'Minyak', 'icon': 'assets/icons/icon_minyak.svg'},
+];
+
 final List<Map> listNasi = [
   {
     'id': 0,

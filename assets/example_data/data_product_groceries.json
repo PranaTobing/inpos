@@ -1,0 +1,333 @@
+{
+  "data": [
+    {
+      "id": 0,
+      "title": "Indomie Goreng",
+      "img": "assets/images/groceries_product/makanan_indomie_goreng.jpg",
+      "category": "mie",
+      "harga": 3100
+    },
+    {
+      "id": 1,
+      "title": "Indomie Goreng Pedas",
+      "img": "assets/images/groceries_product/makanan_indomie_gorengpedas.jpg",
+      "category": "mie",
+      "harga": 3100
+    },
+    {
+      "id": 2,
+      "title": "Indomie Goreng Pedas",
+      "img": "assets/images/groceries_product/makanan_indomie_kariayam.jpg",
+      "category": "mie",
+      "harga": 3100
+    },
+    {
+      "id": 3,
+      "title": "Mie ABC Selera Pedas",
+      "img": "assets/images/groceries_product/makanan_mie_abc_selerapedas.jpg",
+      "category": "mie",
+      "harga": 2400
+    },
+    {
+      "id": 4,
+      "title": "Sarimi Puas",
+      "img": "assets/images/groceries_product/makanan_sarimi_puas.jpg",
+      "category": "mie",
+      "harga": 3000
+    },
+    {
+      "id": 5,
+      "title": "Mie Gelas",
+      "img": "assets/images/groceries_product/makanan_mie_gelas_6.jpg",
+      "category": "mie",
+      "harga": 7900
+    },
+    {
+      "id": 6,
+      "title": "Bihunku Soto",
+      "img": "assets/images/groceries_product/makanan_bihunku_soto.jpg",
+      "category": "mie",
+      "harga": 3400
+    },
+    {
+      "id": 7,
+      "title": "Bihunku Karilaksa",
+      "img": "assets/images/groceries_product/makanan_bihunku_karilaksa.jpg",
+      "category": "mie",
+      "harga": 3800
+    },
+    {
+      "id": 8,
+      "title": "Bakmi Ayam Jamur",
+      "img": "assets/images/groceries_product/makanan_bakmi_ayam_jamur.jpg",
+      "category": "mie",
+      "harga": 15500
+    },
+    {
+      "id": 9,
+      "title": "Bihun Cap Tanam",
+      "img": "assets/images/groceries_product/makanan_bihun_tanam.jpg",
+      "category": "mie",
+      "harga": 8700
+    },
+    {
+      "id": 10,
+      "title": "Bubur Rasa Sapi",
+      "img": "assets/images/groceries_product/makanan_bubur_sapi.jpg",
+      "category": "makanan",
+      "harga": 9100
+    },
+    {
+      "id": 11,
+      "title": "Bubur Rasa Ayam",
+      "img": "assets/images/groceries_product/makanan_bubur_ayam.jpg",
+      "category": "makanan",
+      "harga": 9100
+    },
+    {
+      "id": 12,
+      "title": "Big Cola 3L",
+      "img": "assets/images/groceries_product/minumanringan_bigcola_31l.jpg",
+      "category": "minuman",
+      "harga": 20000
+    },
+    {
+      "id": 13,
+      "title": "Fanta 1.5L",
+      "img": "assets/images/groceries_product/minumanringan_fanta_15l.jpg",
+      "category": "minuman",
+      "harga": 14000
+    },
+    {
+      "id": 14,
+      "title": "Sprite 1.5L",
+      "img": "assets/images/groceries_product/minumanringan_sprite_15l.jpg",
+      "category": "minuman",
+      "harga": 14000
+    },
+    {
+      "id": 15,
+      "title": "Goodmood Blackcurrant",
+      "img": "assets/images/groceries_product/minumanringan_goodmood_blackcurrant.jpg",
+      "category": "minuman",
+      "harga": 7000
+    },
+    {
+      "id": 16,
+      "title": "Larutan Kaki Tiga",
+      "img": "assets/images/groceries_product/minumanringan_kakitiga_penyegar.jpg",
+      "category": "minuman",
+      "harga": 4000
+    },
+    {
+      "id": 17,
+      "title": "Larutan Kaki Tiga (Jeruk Nipis)",
+      "img": "assets/images/groceries_product/minumanringan_larutancapkakitiga_jeruknipis.jpg",
+      "category": "minuman",
+      "harga": 7600
+    },
+    {
+      "id": 18,
+      "title": "Larutan Kaki Tiga (Leci)",
+      "img": "assets/images/groceries_product/minumanringan_larutanpenyegar_leci.jpg",
+      "category": "minuman",
+      "harga": 7500
+    },
+    {
+      "id": 19,
+      "title": "Pocari Sweat 2L",
+      "img": "assets/images/groceries_product/minumanringan_pocarisweat_2l.jpg",
+      "category": "minuman",
+      "harga": 21500
+    },
+    {
+      "id": 20,
+      "title": "Anlene Actifit Cokelat",
+      "img": "assets/images/groceries_product/susu_anlene_actifit_cokelat.jpg",
+      "category": "susu",
+      "harga": 61000
+    },
+    {
+      "id": 21,
+      "title": "Anlene Gold 170gr",
+      "img": "assets/images/groceries_product/susu_anlene_gold.jpg",
+      "category": "susu",
+      "harga": 30000
+    },
+    {
+      "id": 22,
+      "title": "Milkelife Fresh Milk",
+      "img": "assets/images/groceries_product/susu_fresh_milklife.jpg",
+      "category": "susu",
+      "harga": 50000
+    },
+    {
+      "id": 23,
+      "title": "Greenfields",
+      "img": "assets/images/groceries_product/susu_greenfields.jpg",
+      "category": "susu",
+      "harga": 8000
+    },
+    {
+      "id": 24,
+      "title": "Frisianflag UHT Cokelat",
+      "img": "assets/images/groceries_product/susu_frisian_flag_946.jpg",
+      "category": "susu",
+      "harga": 17000
+    },
+    {
+      "id": 25,
+      "title": "Frisianflag Cokelat",
+      "img": "assets/images/groceries_product/susu_frisianflag_cokelat.jpg",
+      "category": "susu",
+      "harga": 9000
+    },
+    {
+      "id": 26,
+      "title": "Frisianflag Putih",
+      "img": "assets/images/groceries_product/susu_frisianflag_putih.jpg",
+      "category": "susu",
+      "harga": 9000
+    },
+    {
+      "id": 27,
+      "title": "Kental Manis Cap 3 Sapi",
+      "img": "assets/images/groceries_product/susu_kentalmanis_3sapi.jpg",
+      "category": "susu",
+      "harga": 14000
+    },
+    {
+      "id": 28,
+      "title": "Milo Serbuk",
+      "img": "assets/images/groceries_product/susu_serbuk_milo_4pcs.jpg",
+      "category": "susu",
+      "harga": 10000
+    },
+    {
+      "id": 29,
+      "title": "Goodday",
+      "img": "assets/images/groceries_product/kopi_goodday.jpg",
+      "category": "kopi",
+      "harga": 22000
+    },
+    {
+      "id": 30,
+      "title": "Kapalapi Kopi Susu",
+      "img": "assets/images/groceries_product/kopi_kapalapi_kopisusu.jpg",
+      "category": "kopi",
+      "harga": 12000
+    },
+    {
+      "id": 31,
+      "title": "Kapalapi",
+      "img": "assets/images/groceries_product/kopi_kapalapi.jpg",
+      "category": "kopi",
+      "harga": 16000
+    },
+    {
+      "id": 32,
+      "title": "Luwak",
+      "img": "assets/images/groceries_product/kopi_luwak.jpg",
+      "category": "kopi",
+      "harga": 8000
+    },
+    {
+      "id": 33,
+      "title": "Top Gula Aren",
+      "img": "assets/images/groceries_product/kopi_top_gulaaren.jpg",
+      "category": "kopi",
+      "harga": 9000
+    },
+    {
+      "id": 34,
+      "title": "Top Toraja",
+      "img": "assets/images/groceries_product/kopi_top_toraja.jpg",
+      "category": "kopi",
+      "harga": 10000
+    },
+    {
+      "id": 35,
+      "title": "Torabika Gula Aren",
+      "img": "assets/images/groceries_product/kopi_torabika_gulaaren.jpg",
+      "category": "kopi",
+      "harga": 16000
+    },
+    {
+      "id": 35,
+      "title": "Torabika",
+      "img": "assets/images/groceries_product/kopi_torabika.jpg",
+      "category": "kopi",
+      "harga": 16000
+    },
+    {
+      "id": 36,
+      "title": "Beras Larisst 5kg",
+      "img": "assets/images/groceries_product/beras_larisst_5kg.jpg",
+      "category": "beras",
+      "harga": 62000
+    },
+    {
+      "id": 37,
+      "title": "Beras Ramos 5kg",
+      "img": "assets/images/groceries_product/beras_ramos_5kg.jpg",
+      "category": "beras",
+      "harga": 60000
+    },
+    {
+      "id": 38,
+      "title": "Beras Sania 5kg",
+      "img": "assets/images/groceries_product/beras_sania_5kg.jpg",
+      "category": "beras",
+      "harga": 60000
+    },
+    {
+      "id": 39,
+      "title": "Beras Susu Organik",
+      "img": "assets/images/groceries_product/beras_susuorganik.jpg",
+      "category": "beras",
+      "harga": 25000
+    },
+    {
+      "id": 40,
+      "title": "Minyak Bimoli 2L",
+      "img": "assets/images/groceries_product/minyak_bimoli_2l.jpg",
+      "category": "minyak",
+      "harga": 50000
+    },
+    {
+      "id": 41,
+      "title": "Minyak Filma 2L",
+      "img": "assets/images/groceries_product/minyak_filma_2l.jpg",
+      "category": "minyak",
+      "harga": 40000
+    },
+    {
+      "id": 42,
+      "title": "Minyak Rosebrand 2L",
+      "img": "assets/images/groceries_product/minyak_rosebrand_2l.jpg",
+      "category": "minyak",
+      "harga": 50000
+    },
+    {
+      "id": 43,
+      "title": "Minyak Sania 2L",
+      "img": "assets/images/groceries_product/minyak_sania_2l.jpg",
+      "category": "minyak",
+      "harga": 38000
+    },
+    {
+      "id": 44,
+      "title": "Minyak Tropical 2L",
+      "img": "assets/images/groceries_product/minyak_tropical_2l.jpg",
+      "category": "minyak",
+      "harga": 40000
+    },
+    {
+      "id": 45,
+      "title": "Minyak Sovia 2L",
+      "img": "assets/images/groceries_product/minyak_sovia_2l.jpg",
+      "category": "minyak",
+      "harga": 36000
+    }
+  ]
+}

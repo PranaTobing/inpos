@@ -4,7 +4,6 @@ import 'package:inpos/bloc/checkout/checkout_bloc.dart';
 import 'package:inpos/bloc/payment_cash/payment_cash_bloc.dart';
 import 'package:inpos/bloc/product_bloc/product_bloc.dart';
 import 'package:inpos/models/payment_cash.dart';
-import 'package:inpos/screens/main_screen.dart';
 import 'package:inpos/screens/splash_screen.dart';
 import 'package:inpos/settings/constants.dart';
 import 'package:inpos/settings/routes.dart';

@@ -81,9 +81,17 @@ class ItemOrderWidget extends StatelessWidget {
                     Text(
                       CurrencyFormat.convertToIdr(product.harga, 0),
                     ),
-                    Text(
-                      product.title,
-                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    Expanded(
+                      child: Center(
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: getProportionateScreenWidth(5)),
+                          child: Text(
+                            product.title,
+                            style: const TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ),
                     ),
                   ],
                 ),

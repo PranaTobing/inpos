@@ -4,8 +4,6 @@ import 'package:inpos/settings/constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:inpos/settings/size_config.dart';
 
-import '../../models/tes_bluetoothmodel.dart';
-
 class BluetoothDeviceSetting extends StatefulWidget {
   const BluetoothDeviceSetting({Key? key}) : super(key: key);
 

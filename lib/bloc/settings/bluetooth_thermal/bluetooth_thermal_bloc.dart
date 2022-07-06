@@ -4,10 +4,9 @@ import 'package:equatable/equatable.dart';
 part 'bluetooth_thermal_event.dart';
 part 'bluetooth_thermal_state.dart';
 
-class BluetoothThermalBloc extends Bloc<BluetoothThermalEvent, BluetoothThermalState> {
+class BluetoothThermalBloc
+    extends Bloc<BluetoothThermalEvent, BluetoothThermalState> {
   BluetoothThermalBloc() : super(BluetoothThermalInitial()) {
-    on<BluetoothThermalEvent>((event, emit) {
-      // TODO: implement event handler
-    });
+    on<BluetoothThermalEvent>((event, emit) {});
   }
 }
